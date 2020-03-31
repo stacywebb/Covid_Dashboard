@@ -53,15 +53,15 @@ node server.js
 Edit src/app/core/services/getdata.service.ts and replace with your own api url.
 
 ```
-  private host = "https://api.coronastatistics.live"
+  private host = "https://api.covid19api.com/live/country/us/status/deaths"
 ```
 
 # API Endpoints
 
-* http://api.coronastatistics.live/all
-* http://api.coronastatistics.live/countries
-* http://api.coronastatistics.live/countries?sort={parameter}
-* http://api.coronastatistics.live/countries/{country_name}
-* http://api.coronastatistics.live/timeline
-* http://api.coronastatistics.live/timeline/global
-* http://api.coronastatistics.live/timeline/{country_name}
+* https://api.covid19api.com/live/all
+* https://api.covid19api.com/live/countries
+* https://api.covid19api.com/live/countries?sort={parameter}
+* https://api.covid19api.com/live/countries/{country_name}
+* https://api.covid19api.com/live/timeline
+* https://api.covid19api.com/live/timeline/global
+* https://api.covid19api.com/live/timeline/{country_name}
