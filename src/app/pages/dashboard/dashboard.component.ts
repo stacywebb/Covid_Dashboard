@@ -476,6 +476,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     tempData = tempData.reverse();
     let chart = am4core.create("pieChart", am4charts.PieChart);
     chart.data = tempData.slice(0, 10);
+    chart.responsive.enabled = true;
     let otherCases = tempData.slice(10, tempData.length);
     chart.data.push({
       country: 'Other',
@@ -540,6 +541,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     chart.legend.labels.template.fill = am4core.color("#adb5bd");
 
     chart.cursor = new am4charts.XYCursor();
+    chart.responsive.enabled = true;
     this.lineChart = chart;
   }
   loadMap(option) {
@@ -654,6 +656,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     chart.startAngle = -90;
     chart.endAngle = 180;
     chart.innerRadius = am4core.percent(20);
+    chart.responsive.enabled = true;
 
     // Set number format
     chart.numberFormatter.numberFormat = "#.#'%'";
@@ -723,7 +726,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     chart.cursor = new am4charts.RadarCursor();
     chart.cursor.fill = am4core.color("#282e38");
     chart.tooltip.label.fill = am4core.color("#282e38");
-
+    chart.responsive.enabled = true;
     this.radarChart = chart;
   }
   createSeriesLine(chart, color, type) {
