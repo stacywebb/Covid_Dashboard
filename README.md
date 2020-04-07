@@ -19,6 +19,11 @@ npm install -g @angular/cli
 ```sh
 npm install
 ```
+Maybe
+
+```sh
+npm run serve
+```
 
 ```sh
 ng build
@@ -29,6 +34,12 @@ ng build
 
 ```sh
 npm install
+```
+
+Maybe
+
+```sh
+npm run serve
 ```
 
 ```sh
