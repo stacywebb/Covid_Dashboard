@@ -1,6 +1,18 @@
 
 <h1 align="center">Covid-19 Live Dashboard</h1>
 
+## Check for dependencies
+
+```sh
+node -v
+npm -v
+```
+#### Install ng
+
+```sh
+npm install -g @angular/cli
+```
+
 
 ## Build the Angular project
 
