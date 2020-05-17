@@ -438,8 +438,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         ]
       });
       this.timeLine = getTimelineData;
-      this.loadLineChart(false);
-      this.loadRadar();
+      // this.loadLineChart(false);
+      //this.loadRadar();
       this.loadPieChart();
 
 
@@ -495,55 +495,70 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.loadMap("cases");
   }
 
-  loadLineChart(chartType) {
-    this.caseData = [];
-    if (this.lineChart) {
-      this.lineChart.dispose();
-    }
-    Object.keys(this.timeLine).forEach(key => {
-      this.caseData.push({
-        date: new Date(key),
-        cases: this.timeLine[key].cases,
-        recoveries: this.timeLine[key].recovered,
-        deaths: this.timeLine[key].deaths
-      });
-    });
-    this.caseData.push({
-      date: new Date().getTime(),
-      cases: this.totalCases,
-      recoveries: this.totalRecoveries,
-      deaths: this.totalDeaths
+  loadDefaultMap() {
+    let tempData = this.fuse.list.slice();
+    this.sortData(tempData, "cases");
+    tempData = tempData.reverse();
+    let chart = [];
+    this.data = tempData.slice(0, 10);
+    let otherCases = tempData.slice(10, tempData.length);
+    this.data.push({
+      country: 'Other',
+      cases: this.calculateSum("cases", otherCases)
     });
 
-    let chart = am4core.create("lineChart", am4charts.XYChart);
-    chart.numberFormatter.numberFormat = "#a";
-    chart.numberFormatter.bigNumberPrefixes = [
-      { "number": 1e+3, "suffix": "K" },
-      { "number": 1e+6, "suffix": "M" },
-      { "number": 1e+9, "suffix": "B" }
-    ];
-    // Create axes
-    let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
-    dateAxis.renderer.minGridDistance = 50;
-
-    let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-    valueAxis.logarithmic = chartType;
-    valueAxis.renderer.labels.template.fill = am4core.color("#adb5bd");
-    dateAxis.renderer.labels.template.fill = am4core.color("#adb5bd");
-
-    chart = this.createSeriesLine(chart, "#21AFDD", "cases");
-    chart = this.createSeriesLine(chart, "#10c469", "recoveries");
-    chart = this.createSeriesLine(chart, "#ff5b5b", "deaths");
-
-    chart.data = this.caseData;
-
-    chart.legend = new am4charts.Legend();
-    chart.legend.labels.template.fill = am4core.color("#adb5bd");
-
-    chart.cursor = new am4charts.XYCursor();
-    chart.responsive.enabled = true;
-    this.lineChart = chart;
+    this.loadMap("cases");
   }
+
+  // loadLineChart(chartType) {
+  //   this.caseData = [];
+  //   if (this.lineChart) {
+  //     this.lineChart.dispose();
+  //   }
+  //   Object.keys(this.timeLine).forEach(key => {
+  //     this.caseData.push({
+  //       date: new Date(key),
+  //       cases: this.timeLine[key].cases,
+  //       recoveries: this.timeLine[key].recovered,
+  //       deaths: this.timeLine[key].deaths
+  //     });
+  //   });
+  //   this.caseData.push({
+  //     date: new Date().getTime(),
+  //     cases: this.totalCases,
+  //     recoveries: this.totalRecoveries,
+  //     deaths: this.totalDeaths
+  //   });
+
+  //   let chart = am4core.create("lineChart", am4charts.XYChart);
+  //   chart.numberFormatter.numberFormat = "#a";
+  //   chart.numberFormatter.bigNumberPrefixes = [
+  //     { "number": 1e+3, "suffix": "K" },
+  //     { "number": 1e+6, "suffix": "M" },
+  //     { "number": 1e+9, "suffix": "B" }
+  //   ];
+  //   // Create axes
+  //   let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+  //   dateAxis.renderer.minGridDistance = 50;
+
+  //   let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+  //   valueAxis.logarithmic = chartType;
+  //   valueAxis.renderer.labels.template.fill = am4core.color("#adb5bd");
+  //   dateAxis.renderer.labels.template.fill = am4core.color("#adb5bd");
+
+  //   chart = this.createSeriesLine(chart, "#21AFDD", "cases");
+  //   chart = this.createSeriesLine(chart, "#10c469", "recoveries");
+  //   chart = this.createSeriesLine(chart, "#ff5b5b", "deaths");
+
+  //   chart.data = this.caseData;
+
+  //   chart.legend = new am4charts.Legend();
+  //   chart.legend.labels.template.fill = am4core.color("#adb5bd");
+
+  //   chart.cursor = new am4charts.XYCursor();
+  //   chart.responsive.enabled = true;
+  //   this.lineChart = chart;
+  // }
   loadMap(option) {
     this.isLoadingMap=true;
     if (this.mapChart) {
