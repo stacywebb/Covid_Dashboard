@@ -13,7 +13,7 @@ export class GetdataService {
   constructor(private _http: HttpClient) { }
   // private host = "https://api.covid19api.com/live"
   //private host = "https://api.coronastatistics.live"
-  private host = "private host = "https://covid19.mathdro.id/api"
+  private host = "https://covid19.mathdro.id/api"
 
   getAll(type): Observable<Country>{
     return this._http.get<Country>(`${this.host}/countries?sort=${type}`).pipe(
