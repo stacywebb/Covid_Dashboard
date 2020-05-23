@@ -16,7 +16,7 @@ import am4geodata_worldLow from "@amcharts/amcharts4-geodata/worldLow";
 
 import {
   GetdataService
-} from "./../../core/services/getdata.service";
+} from "../../core/services/getdata.service";
 import * as Fuse from 'fuse.js'
 import {
   PerfectScrollbarComponent
