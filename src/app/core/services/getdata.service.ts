@@ -11,6 +11,7 @@ HttpClient
 export class GetdataService {
 
   constructor(private _http: HttpClient) { }
+
   //private host = "https://api.covid19api.com/live"
   //private host = "https://api.coronastatistics.live"
   private host = "https://covid19.mathdro.id/api"

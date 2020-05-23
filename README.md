@@ -19,6 +19,11 @@ npm install -g @angular/cli
 ```sh
 npm install
 ```
+Maybe
+
+```sh
+npm run serve
+```
 
 ```sh
 ng build
@@ -29,6 +34,12 @@ ng build
 
 ```sh
 npm install
+```
+
+Maybe
+
+```sh
+npm run serve
 ```
 
 ```sh
@@ -65,15 +76,15 @@ node server.js
 Edit src/app/core/services/getdata.service.ts and replace with your own api url.
 
 ```
-  private host = "https://api.covid19api.com/live/country/us/status/deaths"
+  private host = "https://api.covid19api.com/country/us/status/deaths"
 ```
 
 # API Endpoints
 
-* https://api.covid19api.com/live/all
-* https://api.covid19api.com/live/countries
-* https://api.covid19api.com/live/countries?sort={parameter}
-* https://api.covid19api.com/live/countries/{country_name}
-* https://api.covid19api.com/live/timeline
-* https://api.covid19api.com/live/timeline/global
-* https://api.covid19api.com/live/timeline/{country_name}
+* https://api.covid19api.com/all
+* https://api.covid19api.com/countries
+* https://api.covid19api.com/countries?sort={parameter}
+* https://api.covid19api.com/countries/{country_name}
+* https://api.covid19api.com/timeline
+* https://api.covid19api.com/timeline/global
+* https://api.covid19api.com/timeline/{country_name}
