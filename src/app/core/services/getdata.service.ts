@@ -11,8 +11,9 @@ HttpClient
 export class GetdataService {
 
   constructor(private _http: HttpClient) { }
-  private host = "https://api.covid19api.com/live"
+  //private host = "https://api.covid19api.com/live"
   //private host = "https://api.coronastatistics.live"
+  private host = "https://covid19.mathdro.id/api"
 
   getAll(type): Observable<Country>{
     return this._http.get<Country>(`${this.host}/countries?sort=${type}`).pipe(
@@ -27,19 +28,19 @@ export class GetdataService {
     );
   }
   getTimeline(){
-    return this._http.get(`${this.host}/timeline`).pipe(
+    return this._http.get(`${this.host}/daily`).pipe(
       retry(1),
       catchError(this.handleError)
     );
   }
   getTimelineCountry(country){
-    return this._http.get(`${this.host}/timeline/${country}`).pipe(
+    return this._http.get(`${this.host}/daily/${country}`).pipe(
       retry(1),
       catchError(this.handleError)
     );
   }
   getTimelineGlobal(){
-    return this._http.get(`${this.host}/timeline/global`).pipe(
+    return this._http.get(`${this.host}/daily/global`).pipe(
       retry(1),
       catchError(this.handleError)
     );
